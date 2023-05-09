@@ -19,7 +19,7 @@ function init_db()
 // Check if database is initialized
 // If not, initialize it
 try {
-    $ver = $DB->exec("SELECT version FROM info limit 1");
+    $ver = $DB->query("SELECT version FROM info limit 1")->fetch()[0];
     if ($ver != 2) {
         init_db();
     }
