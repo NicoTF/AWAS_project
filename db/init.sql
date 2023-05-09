@@ -24,6 +24,6 @@ values ('alex', 'password'),
        ('bob', '1234');
 
 insert into photos (user_id, url)
-values ((select id from users where username = 'alex'), 'https://picsum.photos/200'),
-       ((select id from users where username = 'alex'), 'https://picsum.photos/200'),
-       ((select id from users where username = 'bob'), 'https://picsum.photos/200');
+values ((select id from users where username = 'alex'), 'https://picsum.photos/id/523/200/200'),
+       ((select id from users where username = 'alex'), 'https://picsum.photos/id/237/200/300'),
+       ((select id from users where username = 'bob'), 'https://picsum.photos/id/1040/400/400');
