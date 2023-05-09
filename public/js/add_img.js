@@ -7,9 +7,10 @@ $(document).ready(function () {
                 url: url
             },
         }).done(function (data) {
-            // refresh page and empty input
-            $('input[name="url"]').val('');
-            location.reload();
+            if (data === '') {
+                $('input[name="url"]').val('');
+                location.reload();
+            }
         });
     });
 });
