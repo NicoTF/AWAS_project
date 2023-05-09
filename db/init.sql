@@ -1,4 +1,4 @@
-create table if not exists version
+create table if not exists info
 (
     version integer primary key not null
 );
@@ -17,13 +17,13 @@ create table if not exists photos
     url     text not null
 );
 
-insert into version (version) values (1);
+insert into info (version) values (2);
 
 insert into users (username, password)
 values ('alex', 'password'),
        ('bob', '1234');
 
 insert into photos (user_id, url)
-values ((select id from users where username = 'alex'), 'http://www.google.com'),
-       ((select id from users where username = 'alex'), 'http://www.yahoo.com'),
-       ((select id from users where username = 'bob'), 'http://www.bing.com');
+values ((select id from users where username = 'alex'), 'https://picsum.photos/200'),
+       ((select id from users where username = 'alex'), 'https://picsum.photos/200'),
+       ((select id from users where username = 'bob'), 'https://picsum.photos/200');
