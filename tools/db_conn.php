@@ -9,11 +9,11 @@ function init_db()
     global $DB;
 
     // Run reset.sql
-    $sql = file_get_contents('../db/reset.sql');
+    $sql = file_get_contents(dirname(__DIR__) . '/db/reset.sql');
     $DB->exec($sql);
 
     // Run init.sql
-    $sql = file_get_contents('../db/init.sql');
+    $sql = file_get_contents(dirname(__DIR__) . '/db/init.sql');
     $DB->exec($sql);
 }
 
@@ -21,7 +21,7 @@ function init_db()
 // If not, initialize it
 try {
     $ver = $DB->query("SELECT version FROM info limit 1")->fetch()[0];
-    if ($ver != 2) {
+    if ($ver != 3) {
         init_db();
     }
 } catch (Exception $e) {

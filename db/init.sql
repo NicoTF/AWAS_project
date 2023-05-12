@@ -10,14 +10,15 @@ create table if not exists users
     password text not null
 );
 
-create table if not exists photos
+create table if not exists posts
 (
     id      integer primary key not null ,
     user_id integer references users (id),
-    url     text not null
+    image_path     text not null,
+    description text
 );
 
-insert into info (version) values (2);
+insert into info (version) values (3);
 
 insert into users (username, password)
 values ('alex', 'password'),
