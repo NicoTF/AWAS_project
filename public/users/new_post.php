@@ -32,7 +32,9 @@ if (isset($_POST['submit'])) {
 <!-- Upload image form -->
 <form method="POST" enctype="multipart/form-data">
     <input type="file" name="image"/>
-    <input type="text" name="description" placeholder="Enter description"/>
+    <label>
+        <input type="text" name="description" placeholder="Enter description"/>
+    </label>
     <input type="submit" name="submit" value="Upload"/>
 </form>
 </body>
