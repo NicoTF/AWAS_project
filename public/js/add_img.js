@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#add_img').click(function () {
         var url = $('input[name="url"]').val();
-        $.ajax('/add_image.php', {
+        $.ajax('/tools/add_image.php', {
             method: 'GET',
             data: {
                 url: url
