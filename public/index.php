@@ -2,14 +2,8 @@
 global $DB;
 require_once '../tools/db_conn.php';
 ?>
-    <header>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-                integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-        <script src="js/add_img.js"></script>
-        <link rel="stylesheet" href="css/styles.css">
-    </header>
 <body>
-<?php require_once '../tools/menu.php'; ?>
+<?php include '../tools/menu.php'; ?>
     <h1> Welcome! </h1>
     <label>
         <input type="text" name="url" placeholder="Enter image url"/>
