@@ -1,6 +1,6 @@
 <?php
-require_once(../tools/db_conn.php);
-global $ DB;
+require_once("../tools/db_conn.php");
+global $DB;
 /*
 login page
  */
