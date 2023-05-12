@@ -1,7 +1,8 @@
 <?php
 // Create a global variable called DB, connect the db to sqlite file
 global $DB;
-$DB = new PDO('sqlite:../db/main.db');
+$path = dirname(__DIR__) . '/db/main.db';
+$DB = new PDO('sqlite:' . $path);
 
 function init_db()
 {
