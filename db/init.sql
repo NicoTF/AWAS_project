@@ -24,7 +24,7 @@ insert into users (username, password)
 values ('alex', 'password'),
        ('bob', '1234');
 
-insert into photos (user_id, url)
-values ((select id from users where username = 'alex'), 'https://picsum.photos/id/523/200/200'),
-       ((select id from users where username = 'alex'), 'https://picsum.photos/id/237/200/300'),
-       ((select id from users where username = 'bob'), 'https://picsum.photos/id/1040/400/400');
+insert into posts (user_id, image_path, description)
+values ((select id from users where username = 'alex'), 'bridge.jpg', 'Look ath this!'),
+       ((select id from users where username = 'alex'), 'dog.jpg', null);
+       --((select id from users where username = 'bob'), 'https://picsum.photos/id/1040/400/400');
