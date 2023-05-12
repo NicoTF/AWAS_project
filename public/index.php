@@ -1,6 +1,7 @@
 <?php
 global $DB;
 require_once '../tools/db_conn.php';
+include 'login.php';
 ?>
     <header>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"
