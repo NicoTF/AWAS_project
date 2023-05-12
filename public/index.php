@@ -8,6 +8,8 @@ require_once '../tools/db_conn.php';
         <script src="js/add_img.js"></script>
         <link rel="stylesheet" href="css/styles.css">
     </header>
+<body>
+<?php require_once '../tools/menu.php'; ?>
     <h1> Welcome! </h1>
     <label>
         <input type="text" name="url" placeholder="Enter image url"/>
@@ -22,3 +24,5 @@ foreach ($images as $image) {
     </div>
     <?php
 }
+?>
+</body>
