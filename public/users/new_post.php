@@ -7,8 +7,10 @@ if (isset($_POST['submit'])) {
         die('Upload failed with error code ' . $_FILES['image']['error']);
     }
     $file = $_FILES['image'];
-    $fileName = basename($file['name']);
+    $fileName = $file['name'];
     $newPath = dirname(__DIR__) . '/images/' . $fileName;
+
+    echo "$newPath\n";
 
 
     if (move_uploaded_file($file['tmp_name'], $newPath)) {
