@@ -6,6 +6,7 @@
 <ul id="menu">
     <li><a href="/">Home</a></li>
     <li><a href="/users/new_post.php">Post a picture</a></li>
+    <li><a href="/users/logout.php">Logout</a></li>
     <li><a href="/reset_db.php">Reset DB</a></li>
 </ul>
 
