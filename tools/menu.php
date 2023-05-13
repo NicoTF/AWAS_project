@@ -5,6 +5,6 @@
 </header>
 <ul id="menu">
     <li><a href="/">Home</a></li>
-    <li><a href="/users/add_image.php">Upload</a></li>
+    <li><a href="/users/new_post.php">Post a picture</a></li>
 </ul>
 
