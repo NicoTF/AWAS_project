@@ -6,7 +6,7 @@ create table if not exists info
 create table if not exists users
 (
     id       integer primary key not null ,
-    username text not null,
+    username text  unique not null,
     password text not null
 );
 
@@ -21,7 +21,9 @@ create table if not exists posts
 insert into info (version) values (3);
 
 insert into users (username, password)
-values ('alex', 'password'),
+values ('abberto', 'yes'),
+       ('giggino','m4s'),
+       ('alex', 'password'),
        ('bob', '1234');
 
 insert into posts (user_id, image_path, description)
