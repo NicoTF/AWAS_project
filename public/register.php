@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $count = $query -> fetch();
 
     if($count[0] > 0){
-        echo "The username is taken. Pleas chose another one.";
+        echo "The username is taken. Please chose another one.";
     }
 
     else {
