@@ -1,5 +1,7 @@
-.image {
+.post {
     align-content: center;
+    border: 1px solid crimson;
+    margin: 10px;
 }
 
 ul#menu {
