@@ -8,22 +8,32 @@ if(isset($_POST['submit'])) {
     $password = stripslashes($_POST['password']);
 
 
-    $query = $DB->query("SELECT * FROM 'users' WHERE username='$username' and password = '$password'");
-    $qresult = $query->fetch(PDO::FETCH_ASSOC);
+    $query = $DB -> prepare("SELECT * FROM 'users' WHERE username= ? and password = ?");
+    $ok = $query -> execute([$username, $password]);
 
-    if (!($qresult)) {
-        echo "Username/password is incorrect.";
+    if($ok) {
+        $qresult = $query->fetch(PDO::FETCH_ASSOC);
 
-    } else {
-        $UID = $qresult["id"];
-        if (!(is_null($UID))) {
-            $_SESSION['id'] = $UID;
-            $_SESSION['username'] = $qresult['username'];
-            $_SESSION['auth'] = true;
+        //$query = $DB->query("SELECT * FROM 'users' WHERE username='$username' and password = '$password'");
+        //$qresult = $query->fetch(PDO::FETCH_ASSOC);
 
-            header("Location: index.php");
-            exit();
+        if (!($qresult)) {
+            echo "Username/password is incorrect.";
+
+        } else {
+            $UID = $qresult["id"];
+            if (!(is_null($UID))) {
+                $_SESSION['id'] = $UID;
+                $_SESSION['username'] = $qresult['username'];
+                $_SESSION['auth'] = true;
+
+                header("Location: index.php");
+                exit();
+            }
         }
+    }
+    else{
+        echo "Database error. Please retry later.";
     }
 }
 
