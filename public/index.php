@@ -3,7 +3,10 @@ global $DB;
 require_once '../tools/db_conn.php';
 require_once 'check_auth.php';
 ?>
-<body>
+
+<html>
+
+
 <?php include '../tools/menu.php'; ?>
     <h1> Welcome <?php echo $_SESSION['username'] ?>! </h1>
 <?php
@@ -19,3 +22,4 @@ foreach ($posts as $post) {
 }
 ?>
 </body>
+</html>
