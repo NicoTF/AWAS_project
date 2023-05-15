@@ -22,7 +22,5 @@ private ma **lo script non effettuerà controlli e consentirà di visualizzare l
 
 
 ## Vulnerabilità
-- XSS: gli utenti possono inserire codice HTML e JS nel campo di testo, questo verrà salvato nel database e mostrato 
-  nella pagina, quindi è possibile eseguire codice arbitrario
-- File inclusion: gli utenti posso caricare foto, ma il contenuto del file non viene controllato
-- Insecure Direct Object References: gli utenti possono accedere alle immagini di altri utenti
+- Insecure Direct Object References: gli utenti possono accedere al qualsiasi file nel server usando lo script
+  ```/content/get_secured_picture.php?name=<nome file>```. Il nome del file è codificato in base64

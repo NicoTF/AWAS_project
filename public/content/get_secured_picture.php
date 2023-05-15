@@ -5,6 +5,7 @@ global $DB;
 $filename = $_GET['name'];
 
 if ($filename) {
+    $filename = base64_decode($filename);
     $path = "../images/$filename";
     if (!file_exists($path)) {
         die("File not found: $path");
