@@ -1,7 +1,8 @@
 <?php
 global $DB;
 require_once '../tools/db_conn.php';
-require_once 'check_auth.php';
+require_once '../tools/utils.php';
+require_once '../tools/check_auth.php';
 ?>
 
 <html>
