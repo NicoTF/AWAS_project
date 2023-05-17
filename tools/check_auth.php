@@ -3,7 +3,7 @@
 session_start();
 
 if($_SESSION['auth'] != true) {
-    header("Location: login.php");
+    header("Location: /login.php");
     exit();
 }
 /* else{
