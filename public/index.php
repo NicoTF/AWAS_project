@@ -6,6 +6,7 @@ require_once '../tools/check_auth.php';
 ?>
 
 <html>
+<body>
 <?php include '../tools/menu.php'; ?>
 <h1> Welcome <?php echo $_SESSION['username'] ?>! </h1>
 <div id="posts">
