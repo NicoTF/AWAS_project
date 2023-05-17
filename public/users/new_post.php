@@ -1,6 +1,6 @@
 <?php
+require_once '../../tools/check_auth.php';
 require_once '../../tools/db_conn.php';
-require_once '../check_auth.php';
 global $DB;
 
 if (isset($_POST['submit'])) {
@@ -9,10 +9,7 @@ if (isset($_POST['submit'])) {
     }
     $file = $_FILES['image'];
     $fileName = $file['name'];
-    $newPath = dirname(__DIR__) . '/images/' . $fileName;
-
-    echo "$newPath\n";
-
+    $newPath = dirname(__DIR__) . '/../images/' . $fileName;
 
     if (move_uploaded_file($file['tmp_name'], $newPath)) {
         $description = $_POST['description'];
@@ -21,11 +18,14 @@ if (isset($_POST['submit'])) {
         $query = $DB->prepare('INSERT INTO posts (image_path, description, user_id) VALUES (?, ?, ?)');
         if($query->execute([$fileName, $description, $uid])) {
             echo 'Picture posted!';
+            exit();
         } else {
             echo 'Error creating post';
+            exit();
         }
     } else {
         echo 'Error uploading file';
+        exit();
     }
 }
 
