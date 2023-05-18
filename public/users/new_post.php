@@ -17,8 +17,9 @@ if (isset($_POST['submit'])) {
 
         $query = $DB->prepare('INSERT INTO posts (image_path, description, user_id) VALUES (?, ?, ?)');
         if($query->execute([$fileName, $description, $uid])) {
-            echo 'Picture posted!';
+            echo 'Picture posted! <a href="/index.php">Home</a>';
             exit();
+
         } else {
             echo 'Error creating post';
             exit();
