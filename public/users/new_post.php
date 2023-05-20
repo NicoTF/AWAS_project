@@ -9,6 +9,14 @@ if (isset($_POST['submit'])) {
     }
     $file = $_FILES['image'];
     $fileName = $file['name'];
+
+    // Check if mime type is image
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime = finfo_file($finfo, $file['tmp_name']);
+    if (!str_contains($mime, 'image')) {
+        die('Invalid file type');
+    }
+
     $newPath = dirname(__DIR__) . '/../images/' . $fileName;
 
     if (move_uploaded_file($file['tmp_name'], $newPath)) {
