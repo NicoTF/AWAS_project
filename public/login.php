@@ -3,15 +3,15 @@ require_once("../tools/db_conn.php");
 global $DB;
 session_start();
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     $username = stripslashes($_POST['username']);
     $password = stripslashes($_POST['password']);
 
 
-    $query = $DB -> prepare("SELECT * FROM 'users' WHERE username= ? and password = ?");
-    $ok = $query -> execute([$username, $password]);
+    $query = $DB->prepare("SELECT * FROM 'users' WHERE username= ? and password = ?");
+    $ok = $query->execute([$username, $password]);
 
-    if($ok) {
+    if ($ok) {
         $qresult = $query->fetch(PDO::FETCH_ASSOC);
 
         //$query = $DB->query("SELECT * FROM 'users' WHERE username='$username' and password = '$password'");
@@ -31,8 +31,7 @@ if(isset($_POST['submit'])) {
                 exit();
             }
         }
-    }
-    else{
+    } else {
         echo "Database error. Please retry later.";
     }
 }
@@ -45,19 +44,21 @@ if(isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
-Not registered yet? Click <a href=register.php>here</a> to register
-<div class="form">
+<div class="container">
     <h1>Login</h1>
     <form action="" method="post" name="login">
-        <input type="text" name="username" placeholder="Username" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <input name="submit" type="submit" value="Login" />
+        <input type="text" name="username" placeholder="Username" required/>
+        <input type="password" name="password" placeholder="Password" required/>
+        <input name="submit" type="submit" value="Login"/>
     </form>
+    <p>Not registered yet? Click <a href="register.php">here</a> to register.</p>
+</div>
 
 </body>
 
 </html>
+

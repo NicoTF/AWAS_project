@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $uid = $_SESSION["id"];
 
         $query = $DB->prepare('INSERT INTO posts (image_path, description, user_id) VALUES (?, ?, ?)');
-        if($query->execute([$fileName, $description, $uid])) {
+        if ($query->execute([$fileName, $description, $uid])) {
             echo 'Picture posted! <a href="/index.php">Home</a>';
             exit();
 
@@ -39,6 +39,7 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
+<?php /*
 <body>
 <?php include '../../tools/menu.php'; ?>
 <h1>Upload your photo</h1>
@@ -51,3 +52,31 @@ if (isset($_POST['submit'])) {
     <input type="submit" name="submit" value="Upload"/>
 </form>
 </body>
+*/ ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Upload your photo</title>
+</head>
+<body>
+<?php include '../../tools/menu.php'; ?>
+<!-- Upload image form -->
+<div id="newpost">
+    <h1>Upload your photo</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>
+            Upload Image:
+            <input type="file" name="image" accept="image/*" required/>
+        </label>
+        <label>
+            Description:
+            <input type="text" name="description" placeholder="Enter description" required/>
+        </label>
+        <input type="submit" name="submit" value="Upload"/>
+    </form>
+</div>
+</body>
+</html>
