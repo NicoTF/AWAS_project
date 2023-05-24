@@ -17,6 +17,11 @@ if (isset($_POST['submit'])) {
         die('Invalid file type');
     }
 
+    // Pick a random name for the image, and check if it already exists
+    do {
+        $fileName = bin2hex(random_bytes(16)) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
+    } while (file_exists(dirname(__DIR__) . '/../images/' . $fileName));
+
     $newPath = dirname(__DIR__) . '/../images/' . $fileName;
 
     if (move_uploaded_file($file['tmp_name'], $newPath)) {
@@ -39,21 +44,6 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-<?php /*
-<body>
-<?php include '../../tools/menu.php'; ?>
-<h1>Upload your photo</h1>
-<!-- Upload image form -->
-<form method="POST" enctype="multipart/form-data">
-    <input type="file" name="image"/>
-    <label>
-        <input type="text" name="description" placeholder="Enter description"/>
-    </label>
-    <input type="submit" name="submit" value="Upload"/>
-</form>
-</body>
-*/ ?>
-
 
 <!DOCTYPE html>
 <html>
