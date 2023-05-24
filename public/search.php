@@ -4,12 +4,14 @@ require_once '../tools/check_auth.php';
 global $DB;
 ?>
 <?php include '../tools/menu.php'; ?>
-<h1>Find Users</h1>
-<form id="search-form" action="search.php" method="get">
-    <label for="username">search for username:</label>
-    <input type="text" id="username" name="username">
-    <button type="submit">search</button>
-</form>
+<div id="newpost">
+    <h1>Find Users</h1>
+    <form id="search-form" action="search.php" method="get">
+        <label for="username">Search for username:</label>
+        <input type="text" id="username" name="username">
+        <input type="submit" value="Search">
+    </form>
+</div>
 
 <?php
 
@@ -24,13 +26,45 @@ if (isset($_GET['username'])) {
     if (!($qresult)) {
         echo "No matching username found";
     } else {
-        echo "<ul>";
-        foreach ($qresult as $user) {
-            $username = $user[1];
-            $uid = $user[0];
-            echo "<li><a href='/users/user_page.php?uid=$uid'>$username</a></li>";
-        }
-        echo "</ul>";
+        ?>
+        <style>
+            #users ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            #users li {
+                margin-bottom: 10px;
+            }
+
+            #users li a {
+                display: block;
+                padding: 10px;
+                background-color: #f0f0f0;
+                text-decoration: none;
+                color: #333333;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+
+            #users li a:hover {
+                background-color: #e0e0e0;
+            }
+        </style>
+        <div id="users">
+            <ul>
+                <?php
+                foreach ($qresult as $user) {
+                    $username = $user[1];
+                    $uid = $user[0];
+                    echo "<li><a href='/users/user_page.php?uid=$uid'>$username</a></li>";
+                }
+                ?>
+            </ul>
+        </div>
+        <?php
+
     }
 }
 ?>

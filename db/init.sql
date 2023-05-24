@@ -28,5 +28,5 @@ values ('abberto', 'yes'),
 
 insert into posts (user_id, image_path, description)
 values ((select id from users where username = 'alex'), 'bridge.jpg', 'Look ath this!'),
-       ((select id from users where username = 'alex'), 'dog.jpg', null);
+       ((select id from users where username = 'bob'), 'dog.jpg', null);
        --((select id from users where username = 'bob'), 'https://picsum.photos/id/1040/400/400');
