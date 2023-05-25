@@ -2,6 +2,9 @@
 require_once '../../tools/db_conn.php';
 global $DB;
 
+// Check that client is logged in
+require_once '../../tools/check_auth.php';
+
 $filename = $_GET['name'];
 
 if ($filename) {

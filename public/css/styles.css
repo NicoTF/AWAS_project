@@ -43,6 +43,11 @@ h1 {
     margin-top: 0;
 }
 
+.post a {
+    color: rgb(34, 33, 33);
+    text-decoration: none;
+}
+
 ul#menu {
     list-style-type: none;
     margin: 0;
