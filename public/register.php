@@ -10,23 +10,21 @@ if (isset($_POST['submit'])) {
 
     $query = $DB->prepare('SELECT COUNT(*) FROM users WHERE username = :username');
     $query->execute([':username' => $username]);
-    $count = $query -> fetch();
+    $count = $query->fetch();
 
-    if($count[0] > 0){
+    if ($count[0] > 0) {
         echo "The username is taken. Please chose another one.";
-    }
-
-    else {
+    } else {
         if ($password != $cPassword) {
             echo "The password does not match";
         } else {
             $query = $DB->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
 
             if ($query->execute([':username' => $username, ':password' => $password])) {
-                echo "Registration successful! Click <a href=" . "" . "login.php>here</a> to login";
+                echo "Registration successful! Click <a href=" . "login.php>here</a> to login";
                 exit();
             } else {
-                echo "Something went wrong. Please <a href=" . "" . "register.php>retry</a>";
+                echo "Something went wrong. Please <a href=" . "register.php>retry</a>";
                 exit();
             }
         }
@@ -35,20 +33,22 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<link rel="stylesheet" href="css/styles.css">
 <head>
     <title>User Registration</title>
 </head>
 <body>
-<h1>User Registration</h1>
-<form method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
-    <label for="confirmPassword">Password:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" required><br>
-    <input type="submit" name="submit" value="Register">
-</form>
+
+<div id="newpost">
+    <h1>User Registration</h1>
+    <form method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <label for="confirmPassword">Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+        <input type="submit" name="submit" value="Register">
+    </form>
+</div>
 </body>
-</html>
