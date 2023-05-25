@@ -1,4 +1,5 @@
 <?php
+require_once "{$_SERVER['DOCUMENT_ROOT']}/../tools/error_config.php";
 global $DB;
 require_once '../tools/db_conn.php';
 require_once '../tools/utils.php';
