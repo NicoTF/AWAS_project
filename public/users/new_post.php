@@ -1,46 +1,48 @@
+<link rel="stylesheet" href="/css/styles.css">
 <?php
 require_once "{$_SERVER['DOCUMENT_ROOT']}/../tools/error_config.php";
 require_once '../../tools/check_auth.php';
+require_once '../../tools/utils.php';
 require_once '../../tools/db_conn.php';
 global $DB;
 
 if (isset($_POST['submit'])) {
     if (!isset($_FILES['image']) || UPLOAD_ERR_OK !== $_FILES['image']['error']) {
-        die('Upload failed with error code ' . $_FILES['image']['error']);
-    }
-    $file = $_FILES['image'];
-    $fileName = $file['name'];
-
-    // Check if mime type is image
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime = finfo_file($finfo, $file['tmp_name']);
-    if (!str_contains($mime, 'image')) {
-        die('Invalid file type');
-    }
-
-    // Pick a random name for the image, and check if it already exists
-    do {
-        $fileName = bin2hex(random_bytes(16)) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
-    } while (file_exists(dirname(__DIR__) . '/../images/' . $fileName));
-
-    $newPath = dirname(__DIR__) . '/../images/' . $fileName;
-
-    if (move_uploaded_file($file['tmp_name'], $newPath)) {
-        $description = $_POST['description'];
-        $uid = $_SESSION["id"];
-
-        $query = $DB->prepare('INSERT INTO posts (image_path, description, user_id) VALUES (?, ?, ?)');
-        if ($query->execute([$fileName, $description, $uid])) {
-            echo 'Picture posted! <a href="/index.php">Home</a>';
-            exit();
-
-        } else {
-            echo 'Error creating post';
-            exit();
-        }
+        HTMLError('Upload failed with error code ' . $_FILES['image']['error']);
     } else {
-        echo 'Error uploading file';
-        exit();
+        $file = $_FILES['image'];
+        $fileName = $file['name'];
+
+        // Check if mime type is image
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime = finfo_file($finfo, $file['tmp_name']);
+        if (!str_contains($mime, 'image')) {
+            HTMLError('Invalid file type');
+        } else {
+
+            // Pick a random name for the image, and check if it already exists
+            do {
+                $fileName = bin2hex(random_bytes(16)) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
+            } while (file_exists(dirname(__DIR__) . '/../images/' . $fileName));
+
+            $newPath = dirname(__DIR__) . '/../images/' . $fileName;
+
+            if (move_uploaded_file($file['tmp_name'], $newPath)) {
+                $description = $_POST['description'];
+                $uid = $_SESSION["id"];
+
+                $query = $DB->prepare('INSERT INTO posts (image_path, description, user_id) VALUES (?, ?, ?)');
+                if ($query->execute([$fileName, $description, $uid])) {
+                    HTMLmessage('Picture posted! <a href="/index.php">Home</a>');
+                } else {
+                    HTMLError('Something went wrong. Please <a href="/users/new_post.php">retry</a>');
+                    exit();
+                }
+            } else {
+                HTMLError('Something went wrong. Please <a href="/users/new_post.php">retry</a>');
+                exit();
+            }
+        }
     }
 }
 

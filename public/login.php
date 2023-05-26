@@ -1,6 +1,7 @@
 <?php
 require_once "{$_SERVER['DOCUMENT_ROOT']}/../tools/error_config.php";
 require_once("../tools/db_conn.php");
+require_once "../tools/utils.php";
 global $DB;
 session_start();
 
@@ -19,8 +20,7 @@ if (isset($_POST['submit'])) {
         //$qresult = $query->fetch(PDO::FETCH_ASSOC);
 
         if (!($qresult)) {
-            echo "Username/password is incorrect.";
-
+            HTMLError("Username/password is incorrect.");
         } else {
             $UID = $qresult["id"];
             if (!(is_null($UID))) {
@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
             }
         }
     } else {
-        echo "Database error. Please retry later.";
+        HTMLError("Database error. Please retry later.");
     }
 }
 

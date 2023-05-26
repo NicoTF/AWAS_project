@@ -19,9 +19,18 @@ function HTMLError($error)
 {
     ?>
     <div class="error">
-
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         <?php echo $error; ?>
+    </div>
+    <?php
+}
+
+function HTMLmessage($message)
+{
+    ?>
+    <div class="message">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <?php echo $message; ?>
     </div>
     <?php
 }

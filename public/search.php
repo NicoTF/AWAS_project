@@ -1,6 +1,7 @@
 <?php
 require_once "{$_SERVER['DOCUMENT_ROOT']}/../tools/error_config.php";
 require_once '../tools/db_conn.php';
+require_once '../tools/utils.php';
 require_once '../tools/check_auth.php';
 global $DB;
 ?>
@@ -25,7 +26,7 @@ if (isset($_GET['username'])) {
     $qresult = $query->fetchAll();
 
     if (!($qresult)) {
-        echo "No matching username found";
+        HTMLError("No users found");
     } else {
         ?>
         <style>

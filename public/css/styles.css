@@ -175,10 +175,18 @@ input[type="submit"]:hover {
 
 .error {
     padding: 20px;
-    background-color: #f44336; /* Red */
+    background-color: #f44336;
     color: white;
     margin-bottom: 15px;
 }
+
+.message {
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    margin-bottom: 15px;
+}
+
 
 .closebtn {
     margin-left: 15px;

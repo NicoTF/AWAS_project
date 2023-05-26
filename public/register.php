@@ -1,6 +1,8 @@
+<link rel="stylesheet" href="css/styles.css">
 <?php
 require_once "{$_SERVER['DOCUMENT_ROOT']}/../tools/error_config.php";
 require_once("../tools/db_conn.php");
+require_once "../tools/utils.php";
 global $DB;
 
 if (isset($_POST['submit'])) {
@@ -12,19 +14,21 @@ if (isset($_POST['submit'])) {
     $query->execute([':username' => $username]);
     $count = $query->fetch();
 
-    if ($count[0] > 0) {
-        echo "The username is taken. Please chose another one.";
+    $uname_valid = preg_match('/^[a-zA-Z0-9_]+$/', $username);
+
+    if ($count[0] > 0 || !$uname_valid) {
+        HTMLError("Username is not valid");
     } else {
         if ($password != $cPassword) {
-            echo "The password does not match";
+            HTMLError("The password does not match");
         } else {
             $query = $DB->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
 
             if ($query->execute([':username' => $username, ':password' => $password])) {
-                echo "Registration successful! Click <a href=" . "login.php>here</a> to login";
+                HTMLmessage("Registration successful! Click <a href=" . "login.php>here</a> to login");
                 exit();
             } else {
-                echo "Something went wrong. Please <a href=" . "register.php>retry</a>";
+                HTMLError("Something went wrong. Please <a href=" . "register.php>retry</a>");
                 exit();
             }
         }
@@ -33,7 +37,6 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/styles.css">
 <head>
     <title>User Registration</title>
 </head>
