@@ -14,3 +14,14 @@ function buildPost($post)
     </div>
     <?php
 }
+
+function HTMLError($error)
+{
+    ?>
+    <div class="error">
+
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <?php echo $error; ?>
+    </div>
+    <?php
+}
