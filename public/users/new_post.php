@@ -19,7 +19,8 @@ if (isset($_POST['submit'])) {
         // Check if mime type is image
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mime = finfo_file($finfo, $file['tmp_name']);
-        if (!str_contains($mime, 'image')) {
+        // if (!str_contains($mime, 'image'))
+        if (!preg_match('/image\/*/', $mime)) {
             HTMLError('Invalid file type');
         } else {
 
